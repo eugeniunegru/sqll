@@ -1,0 +1,464 @@
+MariaDB [(none)]> create basadate Negru_E_1412;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'basadate Negru_E_1412' at line 1
+MariaDB [(none)]> create Negru_E_1412;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Negru_E_1412' at line 1
+MariaDB [(none)]> create database Negru_E_1412;
+Query OK, 1 row affected (0.28 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| magazin            |
+| mysql              |
+| negru_e_1412       |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.06 sec)
+
+MariaDB [(none)]> use negru_e_1412;
+Database changed
+MariaDB [negru_e_1412]> create table Utilizatori(id int(4) auto_increment not null primary key,
+    -> Nume varchar(30),
+    -> Prenume varchar(30) not null,
+    -> Data_nasterii date not null,
+    -> Parola varchar(10) not null,
+    -> Comentarii text);
+Query OK, 0 rows affected (1.45 sec)
+
+MariaDB [negru_e_1412]> describe Utilizatori;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | YES  |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Parola        | varchar(10) | NO   |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.11 sec)
+
+MariaDB [negru_e_1412]> alter table Utilizatori
+    -> modify Prenume not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'not null' at line 2
+MariaDB [negru_e_1412]> alter table Utilizatori
+    -> modify Prenume varchar(30) not null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [negru_e_1412]> describe Utilizatori;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | YES  |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Parola        | varchar(10) | NO   |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.02 sec)
+
+MariaDB [negru_e_1412]> alter table Utilizatori
+    -> modify Nume varchar(30) not null;
+Query OK, 0 rows affected (0.89 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [negru_e_1412]> describe Utilizatori;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | NO   |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Parola        | varchar(10) | NO   |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.02 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Chicu","Ion","1990.12.03","12345678","Administrator Baze de Date");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola,Comentarii) values ("Chicu","Ion","1990.12.03","12345678","Administrator Baze de Date");
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Botnari","Ana","1995.10.03","12Ana678");
+Query OK, 1 row affected (0.11 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Lungu","Anastasia","1989.08.13","068789543");
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Arnaut","Vadim","1989.01.23","123487654");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola,Comentarii) values ("Boboc","Victor","1993.11.25","Viktor4321","Utilizator in Domeniu");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Iosif","Emil","1994.11.22","Emil@123456");
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Luca","Elizaveta","1984.01.02","luca.elizaveta");
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Fanari","Violeta","1987.05.02","123.violeta");
+Query OK, 1 row affected, 1 warning (0.13 sec)
+
+MariaDB [negru_e_1412]> select * from Utilizatori;
++----+---------+-----------+---------------+------------+----------------------------+
+| id | Nume    | Prenume   | Data_nasterii | Parola     | Comentarii                 |
++----+---------+-----------+---------------+------------+----------------------------+
+|  1 | Chicu   | Ion       | 1990-12-03    | 12345678   | Administrator Baze de Date |
+|  2 | Botnari | Ana       | 1995-10-03    | 12Ana678   | NULL                       |
+|  3 | Lungu   | Anastasia | 1989-08-13    | 068789543  | NULL                       |
+|  4 | Arnaut  | Vadim     | 1989-01-23    | 123487654  | NULL                       |
+|  5 | Boboc   | Victor    | 1993-11-25    | Viktor4321 | Utilizator in Domeniu      |
+|  6 | Iosif   | Emil      | 1994-11-22    | Emil@12345 | NULL                       |
+|  7 | Luca    | Elizaveta | 1984-01-02    | luca.eliza | NULL                       |
+|  8 | Fanari  | Violeta   | 1987-05-02    | 123.violet | NULL                       |
++----+---------+-----------+---------------+------------+----------------------------+
+8 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola) values ("Munteanu","Vasile","1997.11.02","123.admin");
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [negru_e_1412]> insert into Utilizatori(Nume,Prenume,Data_nasterii,Parola,Comentarii) values ("Cojbuc","Anatol","1991.10.12","cojbuc.1991","Administrator de Retea");
+Query OK, 1 row affected, 1 warning (0.06 sec)
+
+MariaDB [negru_e_1412]> select * from Utilizatori;
++----+----------+-----------+---------------+------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Parola     | Comentarii                 |
++----+----------+-----------+---------------+------------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543  | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654  | NULL                       |
+|  5 | Boboc    | Victor    | 1993-11-25    | Viktor4321 | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345 | NULL                       |
+|  7 | Luca     | Elizaveta | 1984-01-02    | luca.eliza | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin  | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1991-10-12    | cojbuc.199 | Administrator de Retea     |
++----+----------+-----------+---------------+------------+----------------------------+
+10 rows in set (0.02 sec)
+
+MariaDB [negru_e_1412]> rename table Utilizatori to user_data;
+Query OK, 0 rows affected (0.67 sec)
+
+MariaDB [negru_e_1412]> describe user_data;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | NO   |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Parola        | varchar(10) | NO   |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.03 sec)
+
+MariaDB [negru_e_1412]> alter table user_data add column Adresa varchar(60) after Parola;
+Query OK, 0 rows affected (0.84 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [negru_e_1412]> describe user_data;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | NO   |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Parola        | varchar(10) | NO   |     | NULL    |                |
+| Adresa        | varchar(60) | YES  |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.03 sec)
+
+MariaDB [negru_e_1412]> alter table user_data change Parola Password varchar(15);
+Query OK, 10 rows affected (2.24 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [negru_e_1412]> describe user_data;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Nume          | varchar(30) | NO   |     | NULL    |                |
+| Prenume       | varchar(30) | NO   |     | NULL    |                |
+| Data_nasterii | date        | NO   |     | NULL    |                |
+| Password      | varchar(15) | YES  |     | NULL    |                |
+| Adresa        | varchar(60) | YES  |     | NULL    |                |
+| Comentarii    | text        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+MariaDB [negru_e_1412]> select * from Utilizatori;
+ERROR 1146 (42S02): Table 'negru_e_1412.utilizatori' doesn't exist
+MariaDB [negru_e_1412]> select * from user_data;
++----+----------+-----------+---------------+------------+--------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password   | Adresa | Comentarii                 |
++----+----------+-----------+---------------+------------+--------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678   | NULL   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678   | NULL   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543  | NULL   | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654  | NULL   | NULL                       |
+|  5 | Boboc    | Victor    | 1993-11-25    | Viktor4321 | NULL   | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345 | NULL   | NULL                       |
+|  7 | Luca     | Elizaveta | 1984-01-02    | luca.eliza | NULL   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet | NULL   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin  | NULL   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1991-10-12    | cojbuc.199 | NULL   | Administrator de Retea     |
++----+----------+-----------+---------------+------------+--------+----------------------------+
+10 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> update user_data set Nume="Chicu",
+    -> Prenume="Viorel",
+    -> Data_nasterii="1990.12.27",
+    -> Password="viorel.1234",
+    -> Adresa="str.Mihai Viteazu 25/1",
+    -> where id=5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where id=5' at line 6
+MariaDB [negru_e_1412]> update user_data set Nume="Chicu",
+    -> Prenume="Viorel",
+    -> Data_nasterii="1990.12.27",
+    -> Password="viorel.1234",
+    -> Adresa="str.Mihai Viteazu 25/1",
+    -> where id="5";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where id="5"' at line 6
+MariaDB [negru_e_1412]> update user_data set Nume="Chicu",
+    -> Prenume="Viorel",
+    -> Data_nasterii="1990.12.27",
+    -> Password="viorel.1234",
+    -> Adresa="str.Mihai Viteazu 25/1",
+    -> where id="5";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where id="5"' at line 6
+MariaDB [negru_e_1412]> update user_data set Nume="Chicu",
+    -> Prenume="Viorel",
+    -> Data_nasterii="1990.12.27",
+    -> Password="viorel.1234",
+    -> Adresa="str.Mihai Viteazu 25/1",
+    -> where id="5";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where id="5"' at line 6
+MariaDB [negru_e_1412]> update user_data set Nume="Chicu",
+    -> Prenume="Viorel",
+    -> Data_nasterii="1990.12.27",
+    -> Password="viorel.1234",
+    -> Adresa="str.Mihai Viteazu 25/1"
+    -> where id="5";
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [negru_e_1412]> select * from user_data;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  7 | Luca     | Elizaveta | 1984-01-02    | luca.eliza  | NULL                   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1991-10-12    | cojbuc.199  | NULL                   | Administrator de Retea     |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+10 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> where id>7;
++----+----------+---------+---------------+------------+--------+------------------------+
+| id | Nume     | Prenume | Data_nasterii | Password   | Adresa | Comentarii             |
++----+----------+---------+---------------+------------+--------+------------------------+
+|  8 | Fanari   | Violeta | 1987-05-02    | 123.violet | NULL   | NULL                   |
+|  9 | Munteanu | Vasile  | 1997-11-02    | 123.admin  | NULL   | NULL                   |
+| 10 | Cojbuc   | Anatol  | 1991-10-12    | cojbuc.199 | NULL   | Administrator de Retea |
++----+----------+---------+---------------+------------+--------+------------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> where id<5;
++----+---------+-----------+---------------+-----------+--------+----------------------------+
+| id | Nume    | Prenume   | Data_nasterii | Password  | Adresa | Comentarii                 |
++----+---------+-----------+---------------+-----------+--------+----------------------------+
+|  1 | Chicu   | Ion       | 1990-12-03    | 12345678  | NULL   | Administrator Baze de Date |
+|  2 | Botnari | Ana       | 1995-10-03    | 12Ana678  | NULL   | NULL                       |
+|  3 | Lungu   | Anastasia | 1989-08-13    | 068789543 | NULL   | NULL                       |
+|  4 | Arnaut  | Vadim     | 1989-01-23    | 123487654 | NULL   | NULL                       |
++----+---------+-----------+---------------+-----------+--------+----------------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> delete from user_data 
+    -> where id="7";
+Query OK, 1 row affected (0.41 sec)
+
+MariaDB [negru_e_1412]> select * from user_data;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1991-10-12    | cojbuc.199  | NULL                   | Administrator de Retea     |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select Nume,Password from user_data;
++----------+-------------+
+| Nume     | Password    |
++----------+-------------+
+| Chicu    | 12345678    |
+| Botnari  | 12Ana678    |
+| Lungu    | 068789543   |
+| Arnaut   | 123487654   |
+| Chicu    | viorel.1234 |
+| Iosif    | Emil@12345  |
+| Fanari   | 123.violet  |
+| Munteanu | 123.admin   |
+| Cojbuc   | cojbuc.199  |
++----------+-------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> update into user_data set
+    -> Data_nasterii="1997.11.02"
+    -> where id="10";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'into user_data set
+Data_nasterii="1997.11.02"
+where id="10"' at line 1
+MariaDB [negru_e_1412]> update user_data set
+    -> Data_nasterii="1997.11.02"
+    -> where id="10";
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [negru_e_1412]> select * from user_data;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1997-11-02    | cojbuc.199  | NULL                   | Administrator de Retea     |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> where Nume="A%";
+Empty set (0.31 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> where Nume="A*";
+Empty set (0.00 sec)
+
+MariaDB [negru_e_1412]> where Nume like "A*";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where Nume like "A*"' at line 1
+MariaDB [negru_e_1412]> where Nume LIKE 'A%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where Nume LIKE 'A%'' at line 1
+MariaDB [negru_e_1412]> select * from user_data
+    -> where Nume LIKE 'A%';
++----+--------+---------+---------------+-----------+--------+------------+
+| id | Nume   | Prenume | Data_nasterii | Password  | Adresa | Comentarii |
++----+--------+---------+---------------+-----------+--------+------------+
+|  4 | Arnaut | Vadim   | 1989-01-23    | 123487654 | NULL   | NULL       |
++----+--------+---------+---------------+-----------+--------+------------+
+1 row in set (0.06 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> order by birth;
+ERROR 1054 (42S22): Unknown column 'birth' in 'order clause'
+MariaDB [negru_e_1412]> select * from user_data
+    -> order by Prenume;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1997-11-02    | cojbuc.199  | NULL                   | Administrator de Retea     |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> order by Nume and order by Data_nasterii DESC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by Data_nasterii DESC' at line 2
+MariaDB [negru_e_1412]> select * from user_data
+    -> (order by Nume) and (order by Data_nasterii DESC);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(order by Nume) and (order by Data_nasterii DESC)' at line 2
+MariaDB [negru_e_1412]> order by (Nume and Data_nasterii DESC);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'order by (Nume and Data_nasterii DESC)' at line 1
+MariaDB [negru_e_1412]> select * from user_data
+    -> order by Nume ASC, Data_nasterii DESC;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+| 10 | Cojbuc   | Anatol    | 1997-11-02    | cojbuc.199  | NULL                   | Administrator de Retea     |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select * from user_data
+    -> ;
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+| id | Nume     | Prenume   | Data_nasterii | Password    | Adresa                 | Comentarii                 |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+|  1 | Chicu    | Ion       | 1990-12-03    | 12345678    | NULL                   | Administrator Baze de Date |
+|  2 | Botnari  | Ana       | 1995-10-03    | 12Ana678    | NULL                   | NULL                       |
+|  3 | Lungu    | Anastasia | 1989-08-13    | 068789543   | NULL                   | NULL                       |
+|  4 | Arnaut   | Vadim     | 1989-01-23    | 123487654   | NULL                   | NULL                       |
+|  5 | Chicu    | Viorel    | 1990-12-27    | viorel.1234 | str.Mihai Viteazu 25/1 | Utilizator in Domeniu      |
+|  6 | Iosif    | Emil      | 1994-11-22    | Emil@12345  | NULL                   | NULL                       |
+|  8 | Fanari   | Violeta   | 1987-05-02    | 123.violet  | NULL                   | NULL                       |
+|  9 | Munteanu | Vasile    | 1997-11-02    | 123.admin   | NULL                   | NULL                       |
+| 10 | Cojbuc   | Anatol    | 1997-11-02    | cojbuc.199  | NULL                   | Administrator de Retea     |
++----+----------+-----------+---------------+-------------+------------------------+----------------------------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> select nume,prenume from user_data
+    -> order by Prenume;
++----------+-----------+
+| nume     | prenume   |
++----------+-----------+
+| Botnari  | Ana       |
+| Lungu    | Anastasia |
+| Cojbuc   | Anatol    |
+| Iosif    | Emil      |
+| Chicu    | Ion       |
+| Arnaut   | Vadim     |
+| Munteanu | Vasile    |
+| Fanari   | Violeta   |
+| Chicu    | Viorel    |
++----------+-----------+
+9 rows in set (0.00 sec)
+
+MariaDB [negru_e_1412]> mysqldump negru_e_1412 D:\Negru_1412.sql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'mysqldump negru_e_1412 D:\Negru_1412.sql' at line 1
+MariaDB [negru_e_1412]> mysqldump negru_e_1412 D:\Negru.sql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'mysqldump negru_e_1412 D:\Negru.sql' at line 1
+MariaDB [negru_e_1412]> exit

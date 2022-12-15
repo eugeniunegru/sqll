@@ -1,0 +1,21 @@
+ /*26*/select man_name,prod_name from  products join manufact on products.man_id=manufact.man_id;
+/*27*/select prod_name,country from products join manufact on products.man_id=manufact.man_id; 
+/*28*/select prod_name,address from products join manufact on products.man_id=manufact.man_id; 
+/*29*/select prod_name,man_name from products join manufact on products.man_id=manufact.man_id where prod_name like 'Router'; 
+/*30*/select prod_name,qty,data from products join sales on products.prod_id=sales.prod_id; 
+/*31*/select sp_name,prod_name from sperson join sales on sperson.sp_id=sales.sp_id join products on sales.prod_id=products.prod_id where prod_name like 'Router';
+/*32*/select MAX(qty) from products join sales on products.prod_id=sales.prod_id  ;
+/*33*/select prod_name,qty from products join sales on products.prod_id=sales.prod_id where qty>400;
+/*34*/select cust_name,data from customers join sales on customers.cust_id=sales.cust_id where data like '2014-09-01%';
+/*35*/select cust_name ,man_name from customers join sales on customers.cust_id=sales.cust_id join products on products.prod_id=sales.prod_id join manufact on products.man_id=manufact.man_id where man_name like 'Sony';
+/*36*/select sp_name ,country from sperson join sales on sperson.sp_id=sales.sp_id join products on products.prod_id=sales.prod_id join manufact on products.man_id=manufact.man_id where manufact.country like 'USA';
+/*37*/select cust_name from customers join sales on customers.cust_id=sales.cust_id;
+/*38*/select sp_name from sperson join sales on sperson.sp_id=sales.sp_id;
+/*39*/select sp_name ,data,qty, prod_name from sperson join sales on sperson.sp_id=sales.sp_id join products on sales.prod_id=products.prod_id;
+/*40*/select sp_name ,data,qty, prod_name from sperson join sales on sperson.sp_id=sales.sp_id join products on sales.prod_id=products.prod_id where data between '2014-09-01' and '2015-09-16' ;
+/*41*/select sp_name from sperson left join sales on sperson.sp_id=sales.sp_id where sales.sp_id is NULL;
+ /*exemplu compunere externa*/select c.cust_name,sp.sp_name,c.address from customers c left join sperson sp on c.address=sp.office; 
+/*exemplu autocompunere*/select sp2.sp_name,sp1.sp_name manger from sperson sp1, sperson sp2 where sp1.sp_id=sp2.manager_id;
+  /*42*/select sp1.sp_name,sp1.comm from sperson sp1 , sperson sp2 where sp1.sp_id=sp2.manager_id and sp2.comm>11;
+  /*exemplu*/select c.cust_name,sp.sp_name,c.address from customers c, sperson sp where c.address = sp.office;    
+    /*44*/select min(((sperson.comm)*(products.price*sales.qty))/1
